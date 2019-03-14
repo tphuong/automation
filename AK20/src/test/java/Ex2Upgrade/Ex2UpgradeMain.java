@@ -21,7 +21,7 @@ public class Ex2UpgradeMain {
 
         login(How.TAG_NAME,"button");
         Thread.sleep(2000);
-        logout(How.CLASS_NAME,"button"); //how to add full class name "button secondary radius"?
+        logout(How.CLASS_NAME,"button"); //how to add full class name "button secondary radius"
 
         Thread.sleep(2000);
         driver.quit();
