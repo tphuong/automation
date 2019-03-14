@@ -22,6 +22,7 @@ public class LoginPageTest {
         driver.findElement(By.cssSelector("a[href='/logout']")).submit();
         //todo: find the solution to use switch with string variable
         String name;
+        //test
         switch (name){
 
         }
