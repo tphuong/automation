@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="hamcrest-core-2.1">
+    <CLASSES>
+      <root url="jar://C:/libs/hamcrest-core-2.1.jar!/" />
+      <root url="jar://C:/libs/junit-4.13-beta-2.jar!/" />
+      <root url="jar://C:/project/softwares/selenium-server-standalone-3.141.59.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
