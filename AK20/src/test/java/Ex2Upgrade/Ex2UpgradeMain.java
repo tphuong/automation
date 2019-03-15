@@ -16,12 +16,12 @@ public class Ex2UpgradeMain {
         openBrowser("Chrome");
         visitWebsite("https://the-internet.herokuapp.com/login");
 
-        fill(getElement(How.NAME,"username"),"tomsmith");
-        fill(getElement(How.NAME,"password"),"SuperSecretPassword!");
+        fill(How.NAME,"username","tomsmith");
+        fill(How.NAME,"password","SuperSecretPassword!");
 
-        login(How.TAG_NAME,"button");
+        login();
         Thread.sleep(2000);
-        logout(How.CLASS_NAME,"button"); //how to add full class name "button secondary radius"
+        logout();
 
         Thread.sleep(2000);
         driver.quit();
@@ -31,16 +31,18 @@ public class Ex2UpgradeMain {
         return driver.findElement(how.buildBy(locator));
     }
 
-    public static void login(How how, String locator){
-        driver.findElement(how.buildBy(locator)).submit();
+    public static void login(){
+        getElement(How.TAG_NAME,"button").submit();
+        //driver.findElement(how.buildBy(locator)).submit();
     }
 
-    public static void logout(How how, String locator){
-        driver.findElement(how.buildBy(locator)).click();
+    public static void logout(){
+        getElement(How.CLASS_NAME, "button").click();//how to add full class name "button secondary radius"
+       // driver.findElement(how.buildBy(locator)).click();
     }
 
-    public static void fill (WebElement element, String withInputText){
-        element.sendKeys(withInputText);
+    public static void fill (How how, String locator, String withInputText){
+        getElement(how,locator).sendKeys(withInputText);
     }
 
     public static void visitWebsite(String url){
