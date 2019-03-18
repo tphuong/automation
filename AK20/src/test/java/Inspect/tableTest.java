@@ -28,7 +28,7 @@ public class tableTest {
             for (int j = 1; j <= columns.size(); j++) {
 
                 cellList.add(getElement(How.XPATH, String.format(cellLocator, i, j)).getText());
-                //System.out.println(stringList.get(stringList.size() - 1));
+                //System.out.println(stringList.get(stringList.size() - 1)); test
             }
             dataRowList.add(cellList);
         }
