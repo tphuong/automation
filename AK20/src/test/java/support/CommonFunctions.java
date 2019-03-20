@@ -1,5 +1,4 @@
-package Ex2Upgrade;
-
+package support;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,42 +8,40 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.How;
 
-public class Ex2UpgradeMain {
+import java.util.List;
+
+public class CommonFunctions {
     public static WebDriver driver;
-    private int errorCode;
 
-
-    public int getErrCode() {
-        return errorCode;
-    }
-    public void setErrCode(int errCode) {
-        this.errorCode = errCode;
+    public static void navigateBack(){
+        driver.navigate().back();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-
-        openBrowser("Chrome");
-        visitWebsite("https://the-internet.herokuapp.com/login");
-        fill(How.NAME, "username", "tomsmith");
-        fill(How.NAME, "password", "SuperSecretPassword!");
-        login();
-        Thread.sleep(2000);
-        logout();
-        Thread.sleep(2000);
-        driver.quit();
+    public static void navigate(String url){
+        driver.navigate().to(url);
     }
 
-    /*The method will be returned WebElement
-    The method has two arguments ( how and locator)
-    The method support get element by Name/ID/XPATH/CSS/TAGNAME
-    */
+    public static void checkboxSelect(How how, String locator){
+        if (!getElement(how,locator).isSelected())
+        {
+            getElement(how,locator).click();
+        }
+    }
+
+    public static void click(How how, String locator){
+        getElement(how,locator).click();
+    }
+
     public static WebElement getElement(How how, String locator) {
         return driver.findElement(how.buildBy(locator));
     }
 
+    public static List<WebElement> getElements (How how, String locator){
+        return driver.findElements(how.buildBy(locator));
+    }
+
     public static void login() {
         getElement(How.TAG_NAME, "button").submit();
-        //driver.findElement(how.buildBy(locator)).submit();
     }
 
     public static void logout() {
@@ -65,27 +62,27 @@ public class Ex2UpgradeMain {
         driver.get(url);
     }
 
-    public static void openBrowser(String browser) {
-        String urlTemp = browser.toLowerCase();
-        switch (urlTemp) {
-            case "chrome":
+    public static void openBrowser(Browsers browser) {
+        //String urlTemp = browser.toLowerCase();
+        switch (browser) {
+            case CHROME:
                 System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
-            case "firefox":
+            case FIREFOX:
                 System.setProperty("webdriver.gecko.driver", "Drivers/geckodriver.exe");
                 driver = new FirefoxDriver();
                 break;
-            case "ie":
+            case IE:
                 System.setProperty("webdriver.gecko.driver", "Drivers/IEDriverServer.exe");
                 driver = new InternetExplorerDriver();
                 break;
-            case "edge":
+            case EDGE:
                 System.setProperty("webdriver.edge.driver", "Drivers/MicrosoftWebDriver.exe");
                 driver = new EdgeDriver();
                 break;
             default:
-                System.out.println("Browser: " + browser + " is not available");
+                System.out.println("Browser: " + browser + " is not supported");
         }
 
     }
